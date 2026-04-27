@@ -1,0 +1,8 @@
+{
+  "config.flyhigher.title": "Fly Higher Config",
+  "config.flyhigher.category.all": "Pressure Configuration",
+  "config.flyhigher.height_multiplier": "Height Scale Multiplier",
+  "config.flyhigher.height_multiplier.tooltip": "Scale altitude distances from the 1.0 atm anchor point (1.0 = default, 2.0 = double height, 0.5 = half height)",
+  "config.flyhigher.node.altitude": "Node %s - Base Altitude (Scaled: %s)",
+  "config.flyhigher.node.pressure": "Node %s - Pressure (atm)"
+}

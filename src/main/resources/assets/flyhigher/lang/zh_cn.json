@@ -1,0 +1,9 @@
+{
+  "fml.menu.mods.info.mod.flyhigher": "直上九霄",
+  "config.flyhigher.title": "直上九霄 - 配置",
+  "config.flyhigher.category.all": "气压配置",
+  "config.flyhigher.height_multiplier": "高度缩放倍率",
+  "config.flyhigher.height_multiplier.tooltip": "以气压 1.0 atm 的节点为锚点，拉伸/压缩其他节点的高度\n1.0 = 默认  |  2.0 = 高度翻倍  |  0.5 = 高度减半",
+  "config.flyhigher.node.altitude": "节点 %s - 基础高度 (缩放后: %s)",
+  "config.flyhigher.node.pressure": "节点 %s - 气压 (atm)"
+}

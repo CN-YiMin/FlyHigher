@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(unzip -l build/libs/custompressure-1.21.1-1.0.0.jar)",
+      "Bash(javap -v build/libs/custompressure-1.21.1-1.0.0.jar)",
+      "Bash(unzip -t build/libs/custompressure-1.21.1-1.0.0.jar)",
+      "Bash(./gradlew clean *)",
+      "Bash(unzip -l \"e:/36389/CustomPressureMod/build/libs/custompressure-1.21.1-1.0.0.jar\")",
+      "Bash(unzip -p \"e:/36389/CustomPressureMod/build/libs/custompressure-1.21.1-1.0.0.jar\" data/custom_pressure/dimension_physics/overworld.json)",
+      "Bash(unzip -l \"E:/PCL 正式版 2.10.3/.minecraft/versions/19/mods/create-aeronautics-bundled-1.21.1-1.1.3.jar\")",
+      "Bash(grep -v \"/$\")",
+      "Bash(unzip -p \"E:/PCL 正式版 2.10.3/.minecraft/versions/19/mods/create-aeronautics-bundled-1.21.1-1.1.3.jar\" META-INF/jarjar/dev.eriksonn.aeronautics.aeronautics-neoforge-1.21.1-1.1.3.jar)",
+      "Bash(unzip -l /tmp/aeronautics.jar)",
+      "Bash(unzip -p /tmp/aeronautics.jar dev/eriksonn/aeronautics/config/server/AeroPhysics.class)",
+      "Bash(grep -E \"\\\\.java$|dimension\")",
+      "Bash(javap -c aeronautics.jar)",
+      "Bash(grep -v \"^.$\")",
+      "Bash(grep \"\\\\.class$\")",
+      "Bash(grep -v \"\\\\$\")",
+      "Bash(unzip -p /tmp/aeronautics.jar dev/eriksonn/aeronautics/Aeronautics.class)",
+      "Bash(unzip -l \"E:/PCL 正式版 2.10.3/.minecraft/versions/19/mods/sable-neoforge-1.21.1-1.1.3.jar\")"
+    ]
+  }
+}

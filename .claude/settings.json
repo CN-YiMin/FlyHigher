@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(unzip -p \"E:/PCL 正式版 2.10.3/.minecraft/versions/19/mods/custompressure-1.21.1-1.0.0.jar\" META-INF/neoforge/mods.toml)",
+      "Bash(unzip -p \"E:/PCL 正式版 2.10.3/.minecraft/versions/19/mods/custompressure-1.21.1-1.0.0.jar\" META-INF/mods.toml)",
+      "Bash(unzip -l \"E:/PCL 正式版 2.10.3/.minecraft/versions/19/mods/custompressure-1.21.1-1.0.0.jar\")"
+    ],
+    "additionalDirectories": [
+      "E:\\PCL 正式版 2.10.3\\.minecraft\\versions\\19"
+    ]
+  }
+}

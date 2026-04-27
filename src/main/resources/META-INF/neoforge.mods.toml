@@ -1,0 +1,37 @@
+modLoader="javafml"
+loaderVersion="[2,)"
+license="MIT"
+
+[[mods]]
+modId="flyhigher"
+version="1.0.0"
+displayName="Fly Higher"
+description="Adjusts air pressure function for Create Aeronautics"
+
+[[dependencies.flyhigher]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.flyhigher]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1,1.22)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.flyhigher]]
+modId="sable"
+type="required"
+versionRange="[1.1,)"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.flyhigher]]
+modId="cloth_config"
+type="required"
+versionRange="[15.0,)"
+ordering="AFTER"
+side="CLIENT"
