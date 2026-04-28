@@ -1,11 +1,14 @@
 package dev.cnyimin.flyhigher;
 
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.IConfigSpec;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.config.ModConfigEvent;
-import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.neoforged.fml.loading.FMLEnvironment;
 
 @Mod(CustomPressureMod.MODID)
 public class CustomPressureMod {
@@ -13,31 +16,33 @@ public class CustomPressureMod {
 
     public CustomPressureMod(IEventBus modEventBus, ModContainer modContainer) {
         FlyHigherConfig.load();
-        FlyHigherConfig.generateDatapack(); // 生成 datapack
+        FlyHigherConfig.generateDatapack();
 
-        // 注册 Forge 配置（让机械动力识别）
-        modContainer.registerConfig(ModConfig.Type.COMMON, FlyHigherForgeConfig.SPEC);
+        modContainer.registerConfig(ModConfig.Type.COMMON, (IConfigSpec) FlyHigherForgeConfig.SPEC);
+        modEventBus.addListener(this::onConfigLoaded);
+        modEventBus.addListener(this::onConfigReloaded);
 
-        // 同步 Forge 配置到 JSON 并重新生成 datapack
-        modEventBus.addListener((ModConfigEvent.Loading event) -> {
-            if (event.getConfig().getModId().equals(MODID)) {
-                syncForgeToJson();
-            }
-        });
-
-        modEventBus.addListener((ModConfigEvent.Reloading event) -> {
-            if (event.getConfig().getModId().equals(MODID)) {
-                syncForgeToJson();
-            }
-        });
-
-        // 注册 Cloth Config UI
-        modContainer.registerExtensionPoint(IConfigScreenFactory.class, (container, screen) -> FlyHigherConfigScreen.createConfigScreen(screen));
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            registerConfigScreen(modContainer);
+        }
     }
 
-    private void syncForgeToJson() {
-        double forgeValue = FlyHigherForgeConfig.HEIGHT_MULTIPLIER.get();
-        FlyHigherConfig.setPressureMultiplier(forgeValue);
-        FlyHigherConfig.generateDatapack(); // 重新生成
+    private void onConfigLoaded(ModConfigEvent.Loading event) {
+        syncForgeToJson(event);
+    }
+
+    private void onConfigReloaded(ModConfigEvent.Reloading event) {
+        syncForgeToJson(event);
+    }
+
+    private void syncForgeToJson(ModConfigEvent event) {
+        if (MODID.equals(event.getConfig().getModId())) {
+            FlyHigherConfig.setPressureMultiplier(FlyHigherForgeConfig.HEIGHT_MULTIPLIER.get());
+        }
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    private static void registerConfigScreen(ModContainer modContainer) {
+        FlyHigherConfigScreen.register(modContainer);
     }
 }

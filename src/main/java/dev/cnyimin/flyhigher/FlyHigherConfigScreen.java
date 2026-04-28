@@ -5,12 +5,27 @@ import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
-public class FlyHigherConfigScreen {
-    public static Screen createConfigScreen(Screen parent) {
+@OnlyIn(Dist.CLIENT)
+public final class FlyHigherConfigScreen {
+    private FlyHigherConfigScreen() {}
+
+    public static void register(ModContainer modContainer) {
+        modContainer.registerExtensionPoint(
+                IConfigScreenFactory.class,
+                (IConfigScreenFactory) (container, parent) -> create(parent)
+        );
+    }
+
+    public static Screen create(Screen parent) {
         ConfigBuilder builder = ConfigBuilder.create()
                 .setParentScreen(parent)
                 .setTitle(Component.translatable("config.flyhigher.title"));
@@ -43,11 +58,15 @@ public class FlyHigherConfigScreen {
             double scaledAltitude = FlyHigherConfig.getScaledAltitude(i);
 
             category.addEntry(entryBuilder.startDoubleField(
-                            Component.translatable("config.flyhigher.node.altitude", i + 1, String.format("%.1f", scaledAltitude)),
+                            Component.translatable(
+                                    "config.flyhigher.node.altitude",
+                                    i + 1,
+                                    String.format(Locale.ROOT, "%.1f", scaledAltitude)
+                            ),
                             node.altitude)
                     .setDefaultValue(node.altitude)
-                    .setMin(-64)
-                    .setMax(2048)
+                    .setMin(-64.0D)
+                    .setMax(2048.0D)
                     .setSaveConsumer(v -> editedNodes.get(idx).altitude = v)
                     .build());
 
