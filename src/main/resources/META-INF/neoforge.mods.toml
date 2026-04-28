@@ -4,7 +4,7 @@ license="MIT"
 
 [[mods]]
 modId="flyhigher"
-version="1.0.0"
+version="1.0.1"
 displayName="Fly Higher"
 description="Adjusts air pressure function for Create Aeronautics"
 

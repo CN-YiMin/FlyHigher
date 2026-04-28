@@ -3,7 +3,7 @@ plugins {
     id 'net.neoforged.gradle.userdev' version '7.0.163'
 }
 
-version = '1.0.0'
+version = '1.0.1'
 group = 'dev.cnyimin.flyhigher'
 
 base {
