@@ -83,11 +83,21 @@ public class FlyHigherConfig {
         generateDatapack();
     }
 
+    public static final Path DATAPACK_ROOT = Paths.get("config", "flyhigher_datapack");
+
     // 生成 datapack JSON 文件
     public static void generateDatapack() {
         try {
-            Path datapackPath = Paths.get("config", "flyhigher_datapack", "data", "flyhigher", "dimension_physics");
+            Path datapackPath = DATAPACK_ROOT.resolve(Paths.get("data", "flyhigher", "dimension_physics"));
             Files.createDirectories(datapackPath);
+
+            String packMcmeta = "{\n" +
+                    "  \"pack\": {\n" +
+                    "    \"pack_format\": 48,\n" +
+                    "    \"description\": \"Fly Higher Generated Datapack\"\n" +
+                    "  }\n" +
+                    "}\n";
+            Files.writeString(DATAPACK_ROOT.resolve("pack.mcmeta"), packMcmeta);
 
             // 构建 JSON
             StringBuilder json = new StringBuilder();

@@ -1,15 +1,16 @@
 # Fly Higher
 
-A NeoForge mod that generates custom air pressure configurations for Create Aeronautics.
+A NeoForge mod that provides advanced air pressure adjustment features for Create Aeronautics.
 
-This mod allows you to customize the air pressure multiplier and pressure values at each altitude node. The configuration is exported as a datapack that can be loaded by Create Aeronautics to adjust airship altitude behavior.
+This mod allows you to customize the air pressure multiplier and pressure values at each altitude node, giving you control over the altitude behavior of airships in Create Aeronautics.
 
 ## Features
 
 - Configurable air pressure multiplier
 - Per-node altitude and pressure value editing
 - Graphical configuration UI (Cloth Config)
-- Datapack generation based on your settings
+- Real-time config synchronization without restart
+- Automatic datapack injection — no manual setup required
 
 ## Requirements
 
@@ -30,25 +31,7 @@ You can configure the mod through:
 - **In-game**: Mod Menu → Fly Higher → Configure
 - **Config File**: `config/flyhigher.json`
 
-## ⚠️ Important — Manual Setup Required
-
-After editing your configuration, the mod generates a datapack file at:
-
-```
-.minecraft/config/flyhigher_datapack/
-```
-
-For your settings to take effect in-game, you must:
-
-1. Locate the generated folder at `.minecraft/config/flyhigher_datapack/`
-2. Package the folder contents into a `.zip` file (or copy the folder directly)
-3. Place it into your world's `datapacks/` folder:
-   ```
-   saves/<your_world>/datapacks/
-   ```
-4. Run `/reload` in-game, or re-enter the world
-
-**Configuration changes will NOT take effect automatically** — the datapack must be manually installed into each world where you want to use it.
+The mod automatically generates a datapack at `config/flyhigher_datapack/` and loads it into every world, so your settings take effect without any manual setup. Run `/reload` in-game to apply changes without re-entering the world.
 
 ## License
 
