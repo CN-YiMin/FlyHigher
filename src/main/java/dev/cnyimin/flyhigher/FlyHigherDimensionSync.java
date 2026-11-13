@@ -8,7 +8,6 @@ import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;
-import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 /**
  * Applies Fly Higher's curve to dimensions that have no explicit Sable
@@ -30,7 +29,7 @@ public final class FlyHigherDimensionSync {
             return;
         }
 
-        MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+        MinecraftServer server = event.getPlayerList().getServer();
         if (server == null) {
             return;
         }
