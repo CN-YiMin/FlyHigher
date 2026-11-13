@@ -1,9 +1,10 @@
 plugins {
-    id 'java'
-    id 'net.neoforged.gradle.userdev' version '7.0.163'
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.141'
+    id 'idea'
 }
 
-version = '1.0.2'
+version = '1.1.0'
 group = 'dev.cnyimin.flyhigher'
 
 base {
@@ -12,38 +13,37 @@ base {
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
-runs {
-    configureEach {
-        systemProperty 'forge.logging.console.level', 'debug'
+neoForge {
+    version = project.neo_version
+
+    runs {
+        client {
+            client()
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+        server {
+            server()
+            programArgument '--nogui'
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
     }
 
-    client {
-        systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+    mods {
+        flyhigher {
+            sourceSet(sourceSets.main)
+        }
     }
+}
 
-    server {
-        systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
-        programArgument '--nogui'
-    }
+repositories {
+    mavenCentral()
 }
 
 dependencies {
-    implementation "net.neoforged:neoforge:${neo_version}"
-    compileOnly files("E:/PCL 正式版 2.10.3/.minecraft/versions/19/mods/cloth-config-15.0.140-neoforge.jar")
-}
-
-jar {
-    manifest {
-        attributes([
-            'Specification-Title'     : project.mod_id,
-            'Specification-Vendor'    : project.mod_id,
-            'Specification-Version'   : '1',
-            'Implementation-Title'    : project.name,
-            'Implementation-Version'  : project.jar.archiveVersion,
-            'Implementation-Vendor'   : project.mod_id,
-            'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        ])
-    }
+    // Supplied by the pack at runtime. These jars are intentionally not bundled.
+    // Put them in libs/ to compile (see libs/README.md).
+    compileOnly files('libs/sable-neoforge-1.21.1-2.0.6.jar')
+    compileOnly files('libs/cloth-config-15.0.140-neoforge.jar')
 }
 
 tasks.withType(JavaCompile).configureEach {

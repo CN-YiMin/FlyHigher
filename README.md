@@ -9,8 +9,9 @@ This mod allows you to customize the air pressure multiplier and pressure values
 - Configurable air pressure multiplier
 - Per-node altitude and pressure value editing
 - Graphical configuration UI (Cloth Config)
-- Real-time config synchronization without restart
 - Automatic datapack injection — no manual setup required
+- **Works in every dimension**: dimensions without their own Sable `dimension_physics` entry get the same curve, with the 1.0 atm anchor placed at that dimension's sea level (Overworld Y=63, Nether Y=32, End Y=0, modded dimensions use their own `getSeaLevel()`)
+- **Altitude Sensor compatible**: the pressure readout (and any other Sable pressure consumer) uses the adjusted curve in every dimension; the height readout remains the sensor's true world Y
 
 ## Requirements
 
@@ -30,8 +31,33 @@ This mod allows you to customize the air pressure multiplier and pressure values
 You can configure the mod through:
 - **In-game**: Mod Menu → Fly Higher → Configure
 - **Config File**: `config/flyhigher.json`
+- **Dimension adaptation**: `config/flyhigher-common.toml` → `[dimensions] adaptOtherDimensions`
 
-The mod automatically generates a datapack at `config/flyhigher_datapack/` and loads it into every world, so your settings take effect without any manual setup. Run `/reload` in-game to apply changes without re-entering the world.
+The mod automatically generates a datapack at `config/flyhigher_datapack/` for the Overworld and loads it into every world. Other dimensions are filled in on the server's datapack sync, so they need no extra files. Run `/reload` (or rejoin) to apply changes without re-entering the world.
+
+`adaptOtherDimensions = false` disables the automatic fill and leaves non-Overworld dimensions on Sable's own defaults.
+
+## Building
+
+Place the runtime jars in `libs/` first (they are not committed):
+
+- `sable-neoforge-1.21.1-2.0.6.jar`
+- `cloth-config-15.0.140-neoforge.jar`
+
+Then run:
+
+```powershell
+./gradlew build
+```
+
+## Changelog
+
+### 1.1.0
+
+- Apply the pressure curve to dimensions without their own Sable `dimension_physics` entry.
+- Place the 1.0 atm anchor at each dimension's sea level (Overworld 63, Nether 32, End 0, modded dimensions use `getSeaLevel()`).
+- The Altitude Sensor's air-pressure readout now follows the same per-dimension curve; height remains true world Y.
+- Add `adaptOtherDimensions` to the common config.
 
 ## License
 

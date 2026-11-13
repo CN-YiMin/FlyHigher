@@ -4,9 +4,9 @@ license="MIT"
 
 [[mods]]
 modId="flyhigher"
-version="1.0.2"
+version="1.1.0"
 displayName="Fly Higher"
-description="Adjusts air pressure function for Create Aeronautics"
+description="Adjusts the air pressure curve for Create Aeronautics, in every dimension and on the Altitude Sensor readouts."
 
 [[dependencies.flyhigher]]
 modId="neoforge"
