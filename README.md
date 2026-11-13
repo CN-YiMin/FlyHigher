@@ -10,7 +10,7 @@ This mod allows you to customize the air pressure multiplier and pressure values
 - Per-node altitude and pressure value editing
 - Graphical configuration UI (Cloth Config)
 - Automatic datapack injection — no manual setup required
-- **Works in every dimension**: dimensions without their own Sable `dimension_physics` entry get the same curve, with the 1.0 atm anchor placed at that dimension's sea level (Overworld Y=63, Nether Y=32, End Y=0, modded dimensions use their own `getSeaLevel()`)
+- **Works in every dimension**: dimensions without their own Sable `dimension_physics` entry get the same curve, with the 1.0 atm anchor placed at that dimension's sea level (`Level.getSeaLevel()`; for example Overworld 63 and Nether 32)
 - **Altitude Sensor compatible**: the pressure readout (and any other Sable pressure consumer) uses the adjusted curve in every dimension; the height readout remains the sensor's true world Y
 
 ## Requirements
@@ -47,7 +47,7 @@ Place the runtime jars in `libs/` first (they are not committed):
 Then run:
 
 ```powershell
-./gradlew build
+.\gradlew.bat build
 ```
 
 ## Changelog
@@ -55,7 +55,7 @@ Then run:
 ### 1.1.0
 
 - Apply the pressure curve to dimensions without their own Sable `dimension_physics` entry.
-- Place the 1.0 atm anchor at each dimension's sea level (Overworld 63, Nether 32, End 0, modded dimensions use `getSeaLevel()`).
+- Place the 1.0 atm anchor at each dimension's sea level (`Level.getSeaLevel()`).
 - The Altitude Sensor's air-pressure readout now follows the same per-dimension curve; height remains true world Y.
 - Add `adaptOtherDimensions` to the common config.
 
