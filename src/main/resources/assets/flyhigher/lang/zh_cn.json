@@ -4,6 +4,12 @@
   "config.flyhigher.category.all": "气压配置",
   "config.flyhigher.height_multiplier": "高度缩放倍率",
   "config.flyhigher.height_multiplier.tooltip": "以气压 1.0 atm 的节点为锚点，拉伸/压缩其他节点的高度\n1.0 = 默认  |  2.0 = 高度翻倍  |  0.5 = 高度减半",
+  "config.flyhigher.weather_pressure": "天气动态气压",
+  "config.flyhigher.weather_pressure.tooltip": "下雨时降低气压，雷暴时进一步降低；实时生效，不需要 /reload。",
+  "config.flyhigher.rain_multiplier": "降雨气压倍率",
+  "config.flyhigher.rain_multiplier.tooltip": "下雨时的气压倍率（1.0 = 不变，0.9 = 降低 10%）。",
+  "config.flyhigher.thunder_multiplier": "雷暴气压倍率",
+  "config.flyhigher.thunder_multiplier.tooltip": "雷暴时的气压倍率（1.0 = 不变，0.75 = 降低 25%）。",
   "config.flyhigher.node.altitude": "节点 %s - 基础高度 (缩放后: %s)",
   "config.flyhigher.node.pressure": "节点 %s - 气压 (atm)"
 }

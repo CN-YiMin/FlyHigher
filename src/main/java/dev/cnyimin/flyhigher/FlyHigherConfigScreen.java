@@ -45,6 +45,35 @@ public final class FlyHigherConfigScreen {
                 .setSaveConsumer(FlyHigherConfig::setPressureMultiplier)
                 .build());
 
+        // 天气动态气压
+        category.addEntry(entryBuilder.startBooleanToggle(
+                        Component.translatable("config.flyhigher.weather_pressure"),
+                        FlyHigherConfig.isWeatherPressureEnabled())
+                .setDefaultValue(true)
+                .setTooltip(Component.translatable("config.flyhigher.weather_pressure.tooltip"))
+                .setSaveConsumer(FlyHigherConfig::setWeatherPressureEnabled)
+                .build());
+
+        category.addEntry(entryBuilder.startDoubleField(
+                        Component.translatable("config.flyhigher.rain_multiplier"),
+                        FlyHigherConfig.getRainPressureMultiplier())
+                .setDefaultValue(0.90)
+                .setMin(0.0)
+                .setMax(1.0)
+                .setTooltip(Component.translatable("config.flyhigher.rain_multiplier.tooltip"))
+                .setSaveConsumer(FlyHigherConfig::setRainPressureMultiplier)
+                .build());
+
+        category.addEntry(entryBuilder.startDoubleField(
+                        Component.translatable("config.flyhigher.thunder_multiplier"),
+                        FlyHigherConfig.getThunderPressureMultiplier())
+                .setDefaultValue(0.75)
+                .setMin(0.0)
+                .setMax(1.0)
+                .setTooltip(Component.translatable("config.flyhigher.thunder_multiplier.tooltip"))
+                .setSaveConsumer(FlyHigherConfig::setThunderPressureMultiplier)
+                .build());
+
         // 节点编辑
         List<FlyHigherConfig.PressureNode> nodes = FlyHigherConfig.getNodes();
         List<FlyHigherConfig.PressureNode> editedNodes = new ArrayList<>();
@@ -66,7 +95,7 @@ public final class FlyHigherConfigScreen {
                             node.altitude)
                     .setDefaultValue(node.altitude)
                     .setMin(-64.0D)
-                    .setMax(2048.0D)
+                    .setMax(20000.0D)
                     .setSaveConsumer(v -> editedNodes.get(idx).altitude = v)
                     .build());
 

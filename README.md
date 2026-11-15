@@ -12,6 +12,8 @@ This mod allows you to customize the air pressure multiplier and pressure values
 - Automatic datapack injection — no manual setup required
 - **Works in every dimension**: dimensions without their own Sable `dimension_physics` entry get the same curve, with the 1.0 atm anchor placed at that dimension's sea level (`Level.getSeaLevel()`; for example Overworld 63 and Nether 32)
 - **Altitude Sensor compatible**: the pressure readout (and any other Sable pressure consumer) uses the adjusted curve in every dimension; the height readout remains the sensor's true world Y
+- **Dynamic weather pressure**: pressure drops while it is raining and drops further during a thunderstorm. Evaluated at read time, so rain/thunder transitions and config changes need no `/reload`
+- **20,000 m altitude nodes**: the config max is raised from 2,048 m to 20,000 m for high-altitude and very large aircraft
 
 ## Requirements
 
@@ -32,10 +34,13 @@ You can configure the mod through:
 - **In-game**: Mod Menu → Fly Higher → Configure
 - **Config File**: `config/flyhigher.json`
 - **Dimension adaptation**: `config/flyhigher-common.toml` → `[dimensions] adaptOtherDimensions`
+- **Weather pressure**: in the Cloth Config screen, or `weatherPressure`, `rainPressureMultiplier`, `thunderPressureMultiplier` in `config/flyhigher.json`
 
 The mod automatically generates a datapack at `config/flyhigher_datapack/` for the Overworld and loads it into every world. Other dimensions are filled in on the server's datapack sync, so they need no extra files. Run `/reload` (or rejoin) to apply changes without re-entering the world.
 
 `adaptOtherDimensions = false` disables the automatic fill and leaves non-Overworld dimensions on Sable's own defaults.
+
+Weather pressure is applied to every Sable pressure read, including the Altitude Sensor and lift calculations. Defaults are `rain = 0.90` (10% lower) and `thunder = 0.75` (25% lower); set both to `1.0` to disable the effect. On a dedicated server, edit the server's `config/flyhigher.json` so both sides use the same values.
 
 ## Building
 
@@ -51,6 +56,12 @@ Then run:
 ```
 
 ## Changelog
+
+### 1.2.0
+
+- Add dynamic weather pressure: rain and thunder lower air pressure in real time, without `/reload`.
+- Add `weatherPressure`, `rainPressureMultiplier` and `thunderPressureMultiplier` to the config UI/JSON.
+- Raise the per-node altitude limit from 2,048 m to 20,000 m.
 
 ### 1.1.0
 

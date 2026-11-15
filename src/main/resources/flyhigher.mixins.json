@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.cnyimin.flyhigher.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "DimensionPhysicsDataMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

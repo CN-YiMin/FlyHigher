@@ -3,6 +3,12 @@
   "config.flyhigher.category.all": "Pressure Configuration",
   "config.flyhigher.height_multiplier": "Height Scale Multiplier",
   "config.flyhigher.height_multiplier.tooltip": "Scale altitude distances from the 1.0 atm anchor point (1.0 = default, 2.0 = double height, 0.5 = half height)",
+  "config.flyhigher.weather_pressure": "Dynamic Weather Pressure",
+  "config.flyhigher.weather_pressure.tooltip": "Lower air pressure while it is raining, and lower it further during a thunderstorm. Applied in real time; no /reload needed.",
+  "config.flyhigher.rain_multiplier": "Rain Pressure Multiplier",
+  "config.flyhigher.rain_multiplier.tooltip": "Pressure multiplier during rain (1.0 = unchanged, 0.9 = 10% lower).",
+  "config.flyhigher.thunder_multiplier": "Thunder Pressure Multiplier",
+  "config.flyhigher.thunder_multiplier.tooltip": "Pressure multiplier during a thunderstorm (1.0 = unchanged, 0.75 = 25% lower).",
   "config.flyhigher.node.altitude": "Node %s - Base Altitude (Scaled: %s)",
   "config.flyhigher.node.pressure": "Node %s - Pressure (atm)"
 }

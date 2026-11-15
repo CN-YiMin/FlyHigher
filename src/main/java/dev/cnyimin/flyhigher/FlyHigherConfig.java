@@ -45,6 +45,14 @@ public class FlyHigherConfig {
     public static class ConfigData {
         public double pressureMultiplier = 1.0;
         public List<PressureNode> nodes = defaultNodes();
+
+        // Weather is evaluated at read time, so changing these values or the
+        // weather itself needs no /reload. Existing configs that predate these
+        // fields keep these defaults because Gson leaves absent primitives
+        // untouched.
+        public boolean weatherPressure = true;
+        public double rainPressureMultiplier = 0.90;
+        public double thunderPressureMultiplier = 0.75;
     }
 
     private static List<PressureNode> defaultNodes() {
@@ -80,6 +88,31 @@ public class FlyHigherConfig {
         } catch (IOException e) {
             LOGGER.error("Failed to save Fly Higher config", e);
         }
+    }
+
+    public static boolean isWeatherPressureEnabled() { return data.weatherPressure; }
+
+    public static void setWeatherPressureEnabled(boolean value) {
+        data.weatherPressure = value;
+        save();
+    }
+
+    public static double getRainPressureMultiplier() {
+        return Math.max(0.0, Math.min(1.0, data.rainPressureMultiplier));
+    }
+
+    public static void setRainPressureMultiplier(double value) {
+        data.rainPressureMultiplier = Math.max(0.0, Math.min(1.0, value));
+        save();
+    }
+
+    public static double getThunderPressureMultiplier() {
+        return Math.max(0.0, Math.min(1.0, data.thunderPressureMultiplier));
+    }
+
+    public static void setThunderPressureMultiplier(double value) {
+        data.thunderPressureMultiplier = Math.max(0.0, Math.min(1.0, value));
+        save();
     }
 
     public static double getPressureMultiplier() { return data.pressureMultiplier; }
