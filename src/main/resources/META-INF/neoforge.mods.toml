@@ -4,9 +4,9 @@ license="MIT"
 
 [[mods]]
 modId="flyhigher"
-version="1.2.0"
+version="1.2.1"
 displayName="Fly Higher"
-description="Adjusts the air pressure curve for Create Aeronautics, with per-dimension and dynamic weather pressure."
+description="Adjusts the air pressure curve for Create Aeronautics, with per-dimension physics and optional dynamic weather pressure."
 
 [[mixins]]
 config="flyhigher.mixins.json"

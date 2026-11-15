@@ -47,12 +47,17 @@ public class FlyHigherConfig {
         public List<PressureNode> nodes = defaultNodes();
 
         // Weather is evaluated at read time, so changing these values or the
-        // weather itself needs no /reload. Existing configs that predate these
-        // fields keep these defaults because Gson leaves absent primitives
+        // weather itself needs no /reload. This is opt-in: existing configs
+        // keep the default (off) because Gson leaves absent primitives
         // untouched.
-        public boolean weatherPressure = true;
+        public boolean weatherPressure = false;
         public double rainPressureMultiplier = 0.90;
         public double thunderPressureMultiplier = 0.75;
+
+        // null means the file predates the opt-in weather switch. Migrating
+        // such files forces weatherPressure off once, so updating from 1.2.0
+        // does not silently keep the feature enabled.
+        public Integer configVersion = null;
     }
 
     private static List<PressureNode> defaultNodes() {
@@ -71,6 +76,11 @@ public class FlyHigherConfig {
                 String json = Files.readString(CONFIG_PATH);
                 data = GSON.fromJson(json, ConfigData.class);
                 if (data.nodes == null || data.nodes.isEmpty()) data.nodes = defaultNodes();
+                if (data.configVersion == null) {
+                    data.configVersion = 1;
+                    data.weatherPressure = false;
+                    save();
+                }
                 LOGGER.info("Fly Higher config loaded: multiplier={}, nodes={}", data.pressureMultiplier, data.nodes.size());
             } else {
                 save();
@@ -83,6 +93,9 @@ public class FlyHigherConfig {
 
     public static void save() {
         try {
+            if (data.configVersion == null) {
+                data.configVersion = 1;
+            }
             Files.createDirectories(CONFIG_PATH.getParent());
             Files.writeString(CONFIG_PATH, GSON.toJson(data));
         } catch (IOException e) {

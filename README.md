@@ -12,7 +12,7 @@ This mod allows you to customize the air pressure multiplier and pressure values
 - Automatic datapack injection — no manual setup required
 - **Works in every dimension**: dimensions without their own Sable `dimension_physics` entry get the same curve, with the 1.0 atm anchor placed at that dimension's sea level (`Level.getSeaLevel()`; for example Overworld 63 and Nether 32)
 - **Altitude Sensor compatible**: the pressure readout (and any other Sable pressure consumer) uses the adjusted curve in every dimension; the height readout remains the sensor's true world Y
-- **Dynamic weather pressure**: pressure drops while it is raining and drops further during a thunderstorm. Evaluated at read time, so rain/thunder transitions and config changes need no `/reload`
+- **Optional dynamic weather pressure**: when enabled, pressure drops while it is raining and drops further during a thunderstorm. Evaluated at read time, so rain/thunder transitions and config changes need no `/reload`. Disabled by default
 - **20,000 m altitude nodes**: the config max is raised from 2,048 m to 20,000 m for high-altitude and very large aircraft
 
 ## Requirements
@@ -40,7 +40,7 @@ The mod automatically generates a datapack at `config/flyhigher_datapack/` for t
 
 `adaptOtherDimensions = false` disables the automatic fill and leaves non-Overworld dimensions on Sable's own defaults.
 
-Weather pressure is applied to every Sable pressure read, including the Altitude Sensor and lift calculations. Defaults are `rain = 0.90` (10% lower) and `thunder = 0.75` (25% lower); set both to `1.0` to disable the effect. On a dedicated server, edit the server's `config/flyhigher.json` so both sides use the same values.
+Weather pressure is **off by default**. Set `weatherPressure = true` (or use the Cloth Config toggle) to enable it. When enabled, it is applied to every Sable pressure read, including the Altitude Sensor and lift calculations. Defaults are `rain = 0.90` (10% lower) and `thunder = 0.75` (25% lower). On a dedicated server, edit the server's `config/flyhigher.json` so both sides use the same values.
 
 ## Building
 
@@ -56,6 +56,11 @@ Then run:
 ```
 
 ## Changelog
+
+### 1.2.1
+
+- Make dynamic weather pressure opt-in and disabled by default; enable it with `weatherPressure = true`.
+- Existing 1.2.0 configs are migrated to the new default once.
 
 ### 1.2.0
 

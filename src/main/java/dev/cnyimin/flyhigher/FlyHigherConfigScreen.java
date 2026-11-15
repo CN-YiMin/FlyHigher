@@ -49,7 +49,7 @@ public final class FlyHigherConfigScreen {
         category.addEntry(entryBuilder.startBooleanToggle(
                         Component.translatable("config.flyhigher.weather_pressure"),
                         FlyHigherConfig.isWeatherPressureEnabled())
-                .setDefaultValue(true)
+                .setDefaultValue(false)
                 .setTooltip(Component.translatable("config.flyhigher.weather_pressure.tooltip"))
                 .setSaveConsumer(FlyHigherConfig::setWeatherPressureEnabled)
                 .build());
